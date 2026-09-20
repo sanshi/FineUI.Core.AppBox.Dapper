@@ -1,6 +1,6 @@
 # FineUI.Core.AppBox.Dapper
 
-FineUI.Core.AppBox.Dapper 是 FineUI 官方应用系统样板。本仓库是该项目的唯一真相源，欢迎通过 Issue 和 Pull Request 参与技术讨论与改进。
+FineUI.Core.AppBox.Dapper 是 FineUI 官方应用系统样板，一个基于 FineUI.Core（社区版）的通用权限管理框架，包含用户、职称、部门、角色与角色权限管理等模块。本仓库是该项目的唯一真相源，欢迎通过 Issue 和 Pull Request 参与技术讨论与改进。
 
 ## 依赖方式
 
@@ -29,31 +29,9 @@ dotnet run --project FineUI.Core.AppBox.Dapper/FineUI.Core.AppBox.Dapper.csproj
 
 端口被占用时，改 `Properties/launchSettings.json` 里对应配置的 `applicationUrl` 即可。
 
+数据库用 Dapper 直接访问 MySQL：先用仓库根目录 `database/MySQL/fineui-core-appbox.sql` 建库并写入演示数据（目前只在 MySQL 下验证过），连接串在 `appsettings.json` 的 `ConnectionStrings` 里。默认管理员账号是 `admin`，密码 `admin`。
+
 **不需要授权文件**：本仓库引用的是公共 NuGet 包 `FineUI.Core`（社区版），社区版不做授权校验，克隆下来就能直接跑。
-
-## 项目说明
-
-FineUI.Core.AppBox.Dapper 是基于 FineUI.Core（社区版） 的通用权限管理框架，包括用户管理、职称管理、部门管理、角色管理、角色权限管理等模块。
-
-更新下载：https://fineui.com/fans/
-
-### 注意
-
-1. FineUI.Core.AppBox.Dapper 作为演示程序，请不要直接用于真实项目。
-2. FineUI.Core.AppBox.Dapper 作为演示程序，版本之间不兼容，也不支持版本升级。
-
-### 使用步骤
-
-1. 用 VS2022 打开项目工程文件（FineUI.Core.AppBox.Dapper.sln）；
-2. 使用根目录下的 database 目录来初始化数据库（目前仅在 MySQL 下测试通过）；
-3. 打开 appsettings.json，配属数据库连接字符串；
-4. 运行（Ctrl+F5）！
-5. 请使用管理员账号登陆网站（用户名：admin 密码：admin）。
-
-### 知识储备
-
-1. 本项目采用 Dapper 作为数据库连接工具，详情：https://github.com/DapperLib/Dapper
-2. 如果尚未安装.Net 8.0，请先安装 SDK：https://dotnet.microsoft.com/download
 
 ## 发布历史
 
