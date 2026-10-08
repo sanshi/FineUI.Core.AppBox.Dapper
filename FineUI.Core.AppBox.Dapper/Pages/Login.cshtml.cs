@@ -68,7 +68,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages
                         // 登录成功
                         await LoginSuccess(user);
 
-                        // 重定向到登陆后首页
+                        // 重定向到登录后首页
                         Response.Redirect("/Index");
                     }
                 }

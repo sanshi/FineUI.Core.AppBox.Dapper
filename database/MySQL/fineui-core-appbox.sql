@@ -171,7 +171,7 @@ INSERT INTO `powers` (`ID`, `Name`, `GroupName`, `Title`, `Remark`) VALUES
 	(2, 'CoreUserNew', 'CoreUser', '新增用户', NULL),
 	(3, 'CoreUserEdit', 'CoreUser', '编辑用户', NULL),
 	(4, 'CoreUserDelete', 'CoreUser', '删除用户', NULL),
-	(5, 'CoreUserChangePassword', 'CoreUser', '修改用户登陆密码', NULL),
+	(5, 'CoreUserChangePassword', 'CoreUser', '修改用户登录密码', NULL),
 	(6, 'CoreRoleView', 'CoreRole', '浏览角色列表', NULL),
 	(7, 'CoreRoleNew', 'CoreRole', '新增角色', NULL),
 	(8, 'CoreRoleEdit', 'CoreRole', '编辑角色', NULL),
