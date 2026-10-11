@@ -116,15 +116,15 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
             Grid2.DataSource = groupPowers;
             Grid2.DataBind();
 
-            // 更新当前角色的权限
-            RegisterStartupScript("updateRolePowers(" + await GetRolePowerIdsAsync(roleID) + ");");
+            // 表格渲染完成后按权限编号勾选复选框，编号通过 JSON 数组传递。
+            global::FineUI.Core.PageContext.InvokeFunction("updateRolePowers", await GetRolePowerIdsAsync(roleID));
         }
 
-        private async Task<string> GetRolePowerIdsAsync(int roleID)
+        private async Task<JArray> GetRolePowerIdsAsync(int roleID)
         {
             // 当前选中角色拥有的权限列表
             var powerIDs = await DB.QueryAsync<int>("SELECT ID FROM Powers INNER JOIN RolePowers ON Powers.ID = RolePowers.PowerID WHERE RolePowers.RoleID = @RoleID", new { RoleID = roleID });
-            return new JArray(powerIDs).ToString(Newtonsoft.Json.Formatting.None);
+            return new JArray(powerIDs);
         }
 
         #endregion

@@ -439,7 +439,7 @@ namespace FineUI.Core.AppBox.Dapper
         /// </summary>
         public static void CheckPowerFailWithAlert()
         {
-            FineUI.Core.PageContext.RegisterStartupScript(Alert.GetShowInTopReference(CHECK_POWER_FAIL_ACTION_MESSAGE));
+            Alert.ShowInTop(CHECK_POWER_FAIL_ACTION_MESSAGE);
         }
 
         /// <summary>
