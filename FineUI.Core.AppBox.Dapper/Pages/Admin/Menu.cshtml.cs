@@ -48,7 +48,10 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         private async Task LoadDataAsync()
         {
-            Grid1.DataSource = await DB.QueryAsync<Menu>("SELECT * FROM Menus ORDER BY SortIndex ASC");
+            // 菜单只保存权限编号，列表需同时取出权限名，才能回显新建/修改后保存的浏览权限。
+            Grid1.DataSource = await DB.QueryAsync<Menu>(
+                "SELECT Menus.*, Powers.Name ViewPowerName FROM Menus " +
+                "LEFT JOIN Powers ON Menus.ViewPowerID = Powers.ID ORDER BY Menus.SortIndex ASC");
             Grid1.DataBind();
         }
 
