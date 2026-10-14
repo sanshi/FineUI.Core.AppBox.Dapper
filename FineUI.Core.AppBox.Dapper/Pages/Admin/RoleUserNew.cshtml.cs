@@ -37,7 +37,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
                     new Alert
                     {
                         Message = "参数错误！",
-                        OkCommand = ClientCommand.HideActiveWindow()
+                        OkCommand = ActiveWindow.CreateHideCommand()
                     }.Show();
                     return;
                 }
