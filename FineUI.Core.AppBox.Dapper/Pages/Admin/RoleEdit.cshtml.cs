@@ -19,19 +19,19 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         #endregion
 
-        #region OnGet
+        #region Page_Get
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task Page_GetAsync(object sender, EventArgs e)
         {
+            int.TryParse(Request.Query["id"], out var id);
             Role = await FindByIDAsync<Role>(id);
 
 
             if (Role == null)
             {
-                return Content("无效参数！");
+                FineUI.Core.PageContext.AbortPage("无效参数！", ActiveWindow.HideCommand());
+                return;
             }
-
-            return Page();
         }
 
         #endregion

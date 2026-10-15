@@ -22,23 +22,24 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         #endregion
 
-        #region OnGet
+        #region Page_Get
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task Page_GetAsync(object sender, EventArgs e)
         {
+            int.TryParse(Request.Query["id"], out var id);
             CurrentUser = await GetUserByIDAsync(id);
 
             if (CurrentUser == null)
             {
-                return Content("无效参数！");
+                FineUI.Core.PageContext.AbortPage("无效参数！", ActiveWindow.HideCommand());
+                return;
             }
 
             if (CurrentUser.Name == "admin" && GetIdentityName() != "admin")
             {
-                return Content("你无权编辑超级管理员！");
+                FineUI.Core.PageContext.AbortPage("你无权编辑超级管理员！", ActiveWindow.HideCommand());
+                return;
             }
-
-            return Page();
         }
 
 
@@ -132,7 +133,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
             // 更新部分字段（先从数据库检索用户，再覆盖用户输入值，注意没有更新Name，Password，CreateTime等字段）
             var _user = await GetUserByIDAsync(CurrentUser.ID);
 
-            // 回发带回来的主键是页面上的隐藏字段，可以被篡改，所以要把 OnGet 里的那两道判断原样再做一遍：
+            // 回发带回来的主键是页面上的隐藏字段，可以被篡改，所以要把 Page_Get 里的那两道判断原样再做一遍：
             // 只在打开页面时判过，拥有编辑权限的普通用户改一下隐藏字段就能编辑超级管理员
             if (_user == null)
             {

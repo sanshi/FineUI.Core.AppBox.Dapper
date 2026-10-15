@@ -20,19 +20,20 @@ namespace FineUI.Core.AppBox.Dapper.Pages
 
         #endregion
 
-        #region Page_Load
-		
-		
-        public void OnGet()
+        #region Page_Get
+
+        public void Page_Get(object sender, EventArgs e)
         {
-            // 用户手工访问/Login页面，此时如果用户已经登录，则直接跳转到首页
-            if(User.Identity.IsAuthenticated)
+            // 已登录用户打开登录地址时直接跳到首页，框架随后跳过登录页模板和 Page_Load。
+            if (User.Identity.IsAuthenticated)
             {
                 Response.Redirect("/");
             }
         }
 
+        #endregion
 
+        #region Page_Load
 
         protected void Page_Load(object sender, EventArgs e)
         {
