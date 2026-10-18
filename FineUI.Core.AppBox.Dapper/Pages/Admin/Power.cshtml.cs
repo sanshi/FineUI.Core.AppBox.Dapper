@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CorePowerView")]
-    public partial class PowerModel : BaseAdminModel
+    public partial class PowerModel : AdminPageBase
     {
         #region Fields
 

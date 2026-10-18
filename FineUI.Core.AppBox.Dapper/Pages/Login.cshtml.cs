@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FineUI.Core.AppBox.Dapper.Pages
 {
-    public partial class LoginModel : BaseModel
+    public partial class LoginModel : PageBase
     {
         #region Fields
 

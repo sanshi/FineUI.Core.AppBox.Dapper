@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FineUI.Core.AppBox.Dapper
 {
     [Authorize]
-    public class BaseAdminModel : BaseModel
+    public class AdminPageBase : PageBase
     {
 
         /// <summary>

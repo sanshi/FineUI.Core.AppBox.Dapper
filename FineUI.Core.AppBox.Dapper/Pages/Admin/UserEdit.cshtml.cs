@@ -13,7 +13,7 @@ using System.Transactions;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreUserEdit")]
-    public partial class UserEditModel : BaseAdminModel
+    public partial class UserEditModel : AdminPageBase
     {
         #region Fields
         

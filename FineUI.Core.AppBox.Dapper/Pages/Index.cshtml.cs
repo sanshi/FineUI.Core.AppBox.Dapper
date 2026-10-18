@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace FineUI.Core.AppBox.Dapper.Pages
 {
     [Authorize]
-    public partial class IndexModel : BaseModel
+    public partial class IndexModel : PageBase
     {
         #region Fields
 

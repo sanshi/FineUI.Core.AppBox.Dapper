@@ -28,7 +28,7 @@ namespace FineUI.Core.AppBox.Dapper
                 {
 	                if (_configs == null)
 	                {
-	                    var db = BaseModel.GetDbConnection();
+	                    var db = PageBase.GetDbConnection();
 
 	                    _configs = db.Query<Config>("SELECT * FROM Configs").ToList();
 
@@ -80,7 +80,7 @@ namespace FineUI.Core.AppBox.Dapper
         /// </summary>
         public static async Task SaveAllAsync()
         {
-            var db = BaseModel.GetDbConnection();
+            var db = PageBase.GetDbConnection();
 
             await db.ExecuteAsync("UPDATE Configs SET ConfigValue = @ConfigValue WHERE ConfigKey = @ConfigKey",
                 new[] {

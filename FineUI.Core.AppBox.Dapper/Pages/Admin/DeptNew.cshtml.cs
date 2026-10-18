@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreDeptNew")]
-    public partial class DeptNewModel : BaseAdminModel
+    public partial class DeptNewModel : AdminPageBase
     {
         #region Fields
 

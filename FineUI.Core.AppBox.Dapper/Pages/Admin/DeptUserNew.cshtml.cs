@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreDeptUserNew")]
-    public partial class DeptUserNewModel : BaseAdminModel
+    public partial class DeptUserNewModel : AdminPageBase
     {
         #region Fields
 

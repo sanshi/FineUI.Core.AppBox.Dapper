@@ -100,7 +100,7 @@ namespace FineUI.Core.AppBox.Dapper
                 sql += " WHERE " + String.Join(" AND ", Wheres);
             }
 
-            var conn = BaseModel.GetDbConnection();
+            var conn = PageBase.GetDbConnection();
             return await conn.QuerySingleOrDefaultAsync<int>(sql, Parameters);
         }
 
@@ -137,7 +137,7 @@ namespace FineUI.Core.AppBox.Dapper
 
             sql += BuildOrderBy(grid);
 
-            var conn = BaseModel.GetDbConnection();
+            var conn = PageBase.GetDbConnection();
             return (await conn.QueryAsync<T>(sql, Parameters)).ToList();
         }
 
@@ -173,7 +173,7 @@ namespace FineUI.Core.AppBox.Dapper
 
             sql += BuildOrderBy(grid);
 
-            var conn = BaseModel.GetDbConnection();
+            var conn = PageBase.GetDbConnection();
 
             // 分页
             if (conn is MySqlConnection)

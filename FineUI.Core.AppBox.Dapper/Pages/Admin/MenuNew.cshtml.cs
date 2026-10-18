@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreMenuNew")]
-    public partial class MenuNewModel : BaseAdminModel
+    public partial class MenuNewModel : AdminPageBase
     {
         #region Fields
 

@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreTitleView")]
-    public partial class TitleModel : BaseAdminModel
+    public partial class TitleModel : AdminPageBase
     {
         #region Fields
 

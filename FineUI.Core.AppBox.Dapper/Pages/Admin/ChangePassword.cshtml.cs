@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
-    public partial class ChangePasswordModel : BaseAdminModel
+    public partial class ChangePasswordModel : AdminPageBase
     {
         #region Fields
 

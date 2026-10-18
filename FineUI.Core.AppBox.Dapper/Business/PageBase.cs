@@ -27,7 +27,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace FineUI.Core.AppBox.Dapper
 {
-    public class BaseModel : PageModel
+    public class PageBase : PageModel
     {
         #region IsPostBack
 
@@ -488,7 +488,7 @@ namespace FineUI.Core.AppBox.Dapper
                 return cached;
             }
 
-            var db = BaseModel.GetDbConnection();
+            var db = PageBase.GetDbConnection();
 
             List<string> rolePowerNames;
 
@@ -538,7 +538,7 @@ namespace FineUI.Core.AppBox.Dapper
         {
             List<string> roleNames = new List<string>();
 
-            var db = BaseModel.GetDbConnection();
+            var db = PageBase.GetDbConnection();
 
             if (context.User.Identity.IsAuthenticated)
             {
@@ -651,7 +651,7 @@ namespace FineUI.Core.AppBox.Dapper
             {
                 if (_db == null)
                 {
-                    _db = BaseModel.GetDbConnection();
+                    _db = PageBase.GetDbConnection();
                 }
                 return _db;
             }

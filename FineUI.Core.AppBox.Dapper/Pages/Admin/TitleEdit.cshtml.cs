@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreTitleEdit")]
-    public partial class TitleEditModel : BaseAdminModel
+    public partial class TitleEditModel : AdminPageBase
     {
         #region Fields
 

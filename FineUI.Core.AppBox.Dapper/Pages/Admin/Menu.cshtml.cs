@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreMenuView")]
-    public partial class MenuModel : BaseAdminModel
+    public partial class MenuModel : AdminPageBase
     {
         #region Fields
 

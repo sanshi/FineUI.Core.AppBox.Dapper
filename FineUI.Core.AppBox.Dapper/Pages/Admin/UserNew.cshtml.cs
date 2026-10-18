@@ -13,7 +13,7 @@ using System.Transactions;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreUserNew")]
-    public partial class UserNewModel : BaseAdminModel
+    public partial class UserNewModel : AdminPageBase
     {
         #region Fields
 

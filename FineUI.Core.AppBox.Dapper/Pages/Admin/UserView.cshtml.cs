@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreUserView")]
-    public partial class UserViewModel : BaseAdminModel
+    public partial class UserViewModel : AdminPageBase
     {
         #region Fields
 

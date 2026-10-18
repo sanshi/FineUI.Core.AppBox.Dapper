@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CoreUserView")]
-    public partial class UserListModel : BaseAdminModel
+    public partial class UserListModel : AdminPageBase
     {
         #region Fields
 

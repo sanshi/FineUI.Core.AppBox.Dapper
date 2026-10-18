@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     [CheckPower(Name = "CorePowerEdit")]
-    public partial class PowerEditModel : BaseAdminModel
+    public partial class PowerEditModel : AdminPageBase
     {
         #region Fields
 
