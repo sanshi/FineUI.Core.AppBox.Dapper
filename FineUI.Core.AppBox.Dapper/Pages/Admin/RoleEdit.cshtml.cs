@@ -17,20 +17,27 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
         [BindProperty]
         public Role Role { get; set; }
 
+        private Role _storedRole;
+
         #endregion
 
-        #region Page_Get
+        #region Page_Init
 
-        public async Task Page_GetAsync(object sender, EventArgs e)
+        public async Task Page_InitAsync(object sender, EventArgs e)
         {
             int.TryParse(Request.Query["id"], out var id);
-            Role = await FindByIDAsync<Role>(id);
+            _storedRole = await FindByIDAsync<Role>(id);
 
 
-            if (Role == null)
+            if (_storedRole == null)
             {
                 FineUI.Core.PageContext.AbortPage("无效参数！", ActiveWindow.HideCommand());
                 return;
+            }
+
+            if (!IsPostBack)
+            {
+                Role = _storedRole;
             }
         }
 
@@ -57,7 +64,10 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
                 return;
             }
 
-            await ExecuteUpdateAsync<Role>(Role);
+            // 更新 Page_Init 已按当前 URL 校验的实体，表单中的主键不决定保存目标。
+            _storedRole.Name = Role.Name;
+            _storedRole.Remark = Role.Remark;
+            await ExecuteUpdateAsync<Role>(_storedRole);
 
             // 角色本身变了，稳妥起见让各会话重新解析一次权限
             InvalidatePermissionCaches();

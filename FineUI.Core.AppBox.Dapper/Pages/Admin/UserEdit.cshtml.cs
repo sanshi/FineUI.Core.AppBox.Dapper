@@ -20,25 +20,32 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
         [BindProperty]
         public User CurrentUser { get; set; }
 
+        private User _storedUser;
+
         #endregion
 
-        #region Page_Get
+        #region Page_Init
 
-        public async Task Page_GetAsync(object sender, EventArgs e)
+        public async Task Page_InitAsync(object sender, EventArgs e)
         {
             int.TryParse(Request.Query["id"], out var id);
-            CurrentUser = await GetUserByIDAsync(id);
+            _storedUser = await GetUserByIDAsync(id);
 
-            if (CurrentUser == null)
+            if (_storedUser == null)
             {
                 FineUI.Core.PageContext.AbortPage("无效参数！", ActiveWindow.HideCommand());
                 return;
             }
 
-            if (CurrentUser.Name == "admin" && GetIdentityName() != "admin")
+            if (_storedUser.Name == "admin" && GetIdentityName() != "admin")
             {
                 FineUI.Core.PageContext.AbortPage("你无权编辑超级管理员！", ActiveWindow.HideCommand());
                 return;
+            }
+
+            if (!IsPostBack)
+            {
+                CurrentUser = _storedUser;
             }
         }
 
@@ -130,58 +137,42 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
                 return;
             }
 
-            // 更新部分字段（先从数据库检索用户，再覆盖用户输入值，注意没有更新Name，Password，CreateTime等字段）
-            var _user = await GetUserByIDAsync(CurrentUser.ID);
-
-            // 回发带回来的主键是页面上的隐藏字段，可以被篡改，所以要把 Page_Get 里的那两道判断原样再做一遍：
-            // 只在打开页面时判过，拥有编辑权限的普通用户改一下隐藏字段就能编辑超级管理员
-            if (_user == null)
-            {
-                Alert.Show("无效参数！");
-                return;
-            }
-
-            if (_user.Name == "admin" && GetIdentityName() != "admin")
-            {
-                Alert.Show("你无权编辑超级管理员！");
-                return;
-            }
-
-            _user.ChineseName = CurrentUser.ChineseName;
-            _user.Gender = CurrentUser.Gender;
-            _user.Enabled = CurrentUser.Enabled;
-            _user.Email = CurrentUser.Email;
-            _user.CompanyEmail = CurrentUser.CompanyEmail;
-            _user.OfficePhone = CurrentUser.OfficePhone;
-            _user.OfficePhoneExt = CurrentUser.OfficePhoneExt;
-            _user.HomePhone = CurrentUser.HomePhone;
-            _user.CellPhone = CurrentUser.CellPhone;
-            _user.Remark = CurrentUser.Remark;
+            // 只覆盖表单允许修改的字段，保存目标来自本次 Page_Init 的 URL 校验。
+            _storedUser.ChineseName = CurrentUser.ChineseName;
+            _storedUser.Gender = CurrentUser.Gender;
+            _storedUser.Enabled = CurrentUser.Enabled;
+            _storedUser.Email = CurrentUser.Email;
+            _storedUser.CompanyEmail = CurrentUser.CompanyEmail;
+            _storedUser.OfficePhone = CurrentUser.OfficePhone;
+            _storedUser.OfficePhoneExt = CurrentUser.OfficePhoneExt;
+            _storedUser.HomePhone = CurrentUser.HomePhone;
+            _storedUser.CellPhone = CurrentUser.CellPhone;
+            _storedUser.Remark = CurrentUser.Remark;
 
             // 如果选择了部门，则更新部门ID，否则设置为null
             if (!String.IsNullOrEmpty(ddbDept.Value))
             {
-                _user.DeptID = Convert.ToInt32(ddbDept.Value);
+                _storedUser.DeptID = Convert.ToInt32(ddbDept.Value);
             }
             else
             {
-                _user.DeptID = null;
+                _storedUser.DeptID = null;
             }
 
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 // 更新用户
-                await ExecuteUpdateAsync<User>(DB, _user);
+                await ExecuteUpdateAsync<User>(DB, _storedUser);
 
                 // 更新用户所属角色
                 int[] roleIDs = ddbRoles.Values.Select(u => Convert.ToInt32(u)).ToArray();
-                await DB.ExecuteAsync("DELETE FROM RoleUsers WHERE UserID = @UserID", new { UserID = _user.ID });
-                await DB.ExecuteAsync("INSERT RoleUsers (UserID, RoleID) VALUES (@UserID, @RoleID)", roleIDs.Select(u => new { UserID = _user.ID, RoleID = u }).ToList());
+                await DB.ExecuteAsync("DELETE FROM RoleUsers WHERE UserID = @UserID", new { UserID = _storedUser.ID });
+                await DB.ExecuteAsync("INSERT RoleUsers (UserID, RoleID) VALUES (@UserID, @RoleID)", roleIDs.Select(u => new { UserID = _storedUser.ID, RoleID = u }).ToList());
 
                 // 更新用户所属职务
                 int[] titleIDs = ddbTitles.Values.Select(u => Convert.ToInt32(u)).ToArray();
-                await DB.ExecuteAsync("DELETE FROM TitleUsers WHERE UserID = @UserID", new { UserID = _user.ID });
-                await DB.ExecuteAsync("INSERT TitleUsers (UserID, TitleID) VALUES (@UserID, @TitleID)", titleIDs.Select(u => new { UserID = _user.ID, TitleID = u }).ToList());
+                await DB.ExecuteAsync("DELETE FROM TitleUsers WHERE UserID = @UserID", new { UserID = _storedUser.ID });
+                await DB.ExecuteAsync("INSERT TitleUsers (UserID, TitleID) VALUES (@UserID, @TitleID)", titleIDs.Select(u => new { UserID = _storedUser.ID, TitleID = u }).ToList());
 
 
                 transactionScope.Complete();

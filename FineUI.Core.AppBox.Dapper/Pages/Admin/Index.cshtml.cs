@@ -9,9 +9,5 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 {
     public partial class IndexModel : BaseAdminModel
     {
-        public void Page_Get(object sender, EventArgs e)
-        {
-
-        }
     }
 }

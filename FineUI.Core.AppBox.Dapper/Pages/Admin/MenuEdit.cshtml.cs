@@ -17,19 +17,26 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
         [BindProperty]
         public Menu Menu { get; set; }
 
+        private Menu _storedMenu;
+
         #endregion
 
-        #region Page_Get
+        #region Page_Init
 
-        public async Task Page_GetAsync(object sender, EventArgs e)
+        public async Task Page_InitAsync(object sender, EventArgs e)
         {
             int.TryParse(Request.Query["id"], out var id);
-            Menu = await DB.QuerySingleOrDefaultAsync<Menu>("SELECT Menus.*, Powers.Name ViewPowerName FROM Menus LEFT JOIN Powers ON Menus.ViewPowerID = Powers.ID WHERE Menus.ID = @MenuID", new { MenuID = id });
+            _storedMenu = await DB.QuerySingleOrDefaultAsync<Menu>("SELECT Menus.*, Powers.Name ViewPowerName FROM Menus LEFT JOIN Powers ON Menus.ViewPowerID = Powers.ID WHERE Menus.ID = @MenuID", new { MenuID = id });
 
-            if (Menu == null)
+            if (_storedMenu == null)
             {
                 FineUI.Core.PageContext.AbortPage("无效参数！", ActiveWindow.HideCommand());
                 return;
+            }
+
+            if (!IsPostBack)
+            {
+                Menu = _storedMenu;
             }
         }
 
@@ -123,7 +130,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         private bool IsOrChildOfCurrentModel(int menuID)
         {
-            if (menuID == Menu.ID)
+            if (menuID == _storedMenu.ID)
             {
                 return true;
             }
@@ -166,23 +173,41 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
                 return;
             }
 
-            // 设置父菜单
+            // 保存时核对父菜单，避免手工构造请求造成循环。
+            int? parentId = null;
             if (!String.IsNullOrEmpty(ddbParent.Value))
             {
-                int parentID = Convert.ToInt32(ddbParent.Value);
-                Menu.ParentID = parentID;
+                if (!Int32.TryParse(ddbParent.Value, out var selectedParentId))
+                {
+                    Alert.Show("无效的上级菜单！");
+                    return;
+                }
+                parentId = selectedParentId;
             }
-            else
+
+            var visited = new HashSet<int>();
+            int? ancestorId = parentId;
+            while (ancestorId.HasValue)
             {
-                Menu.ParentID = null;
+                if (ancestorId == _storedMenu.ID || !visited.Add(ancestorId.Value))
+                {
+                    Alert.Show("不能把当前菜单设为自己的下级！");
+                    return;
+                }
+                var ancestor = await FindByIDAsync<Menu>(ancestorId.Value);
+                if (ancestor == null)
+                {
+                    Alert.Show("上级菜单不存在！");
+                    return;
+                }
+                ancestorId = ancestor.ParentID;
             }
 
-
-            // 从页面文本输入框中取出用户修改的值，并更新模型属性 Menu.ViewPowerID
+            // 浏览权限按当前输入解析，写入服务器查询到的菜单实体。
             var viewPowerName = tbxViewPower.Text;
             if (String.IsNullOrEmpty(viewPowerName))
             {
-                Menu.ViewPowerID = null;
+                _storedMenu.ViewPowerID = null;
             }
             else
             {
@@ -190,7 +215,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
                 if (viewPowerID != null)
                 {
-                    Menu.ViewPowerID = viewPowerID;
+                    _storedMenu.ViewPowerID = viewPowerID;
                 }
                 else
                 {
@@ -199,7 +224,13 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
                 }
             }
 
-            await ExecuteUpdateAsync<Menu>(Menu);
+            _storedMenu.Name = Menu.Name;
+            _storedMenu.SortIndex = Menu.SortIndex;
+            _storedMenu.NavigateUrl = Menu.NavigateUrl;
+            _storedMenu.ImageUrl = Menu.ImageUrl;
+            _storedMenu.Remark = Menu.Remark;
+            _storedMenu.ParentID = parentId;
+            await ExecuteUpdateAsync<Menu>(_storedMenu);
 
             // 关闭本窗体（触发窗体的关闭事件）
             ActiveWindow.HidePostBack();
