@@ -25,7 +25,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         public async Task Page_InitAsync(object sender, EventArgs e)
         {
-            int.TryParse(Request.Query["id"], out var id);
+            var id = GetQueryIntValue("id");
             _storedTitle = await FindByIDAsync<Title>(id);
 
             if (_storedTitle == null)

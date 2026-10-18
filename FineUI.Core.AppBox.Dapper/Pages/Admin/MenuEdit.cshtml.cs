@@ -25,7 +25,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         public async Task Page_InitAsync(object sender, EventArgs e)
         {
-            int.TryParse(Request.Query["id"], out var id);
+            var id = GetQueryIntValue("id");
             _storedMenu = await DB.QuerySingleOrDefaultAsync<Menu>("SELECT Menus.*, Powers.Name ViewPowerName FROM Menus LEFT JOIN Powers ON Menus.ViewPowerID = Powers.ID WHERE Menus.ID = @MenuID", new { MenuID = id });
 
             if (_storedMenu == null)

@@ -28,7 +28,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
         {
             if (!IsPostBack)
             {
-                var titleID = GetQueryIntValue("titleID");
+                var titleID = GetQueryIntValue("titleID", -1);
 
                 var title = await FindByIDAsync<Title>(titleID);
 

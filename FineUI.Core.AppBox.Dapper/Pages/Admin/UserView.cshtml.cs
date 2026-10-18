@@ -23,7 +23,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
 
         public async Task Page_InitAsync(object sender, EventArgs e)
         {
-            int.TryParse(Request.Query["id"], out var id);
+            var id = GetQueryIntValue("id");
             CurrentUser = await GetUserByIDAsync(id);
 
             if (CurrentUser == null)

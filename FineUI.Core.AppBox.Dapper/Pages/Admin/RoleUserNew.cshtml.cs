@@ -27,7 +27,7 @@ namespace FineUI.Core.AppBox.Dapper.Pages.Admin
         {
             if (!IsPostBack)
             {
-                var roleID = GetQueryIntValue("roleID");
+                var roleID = GetQueryIntValue("roleID", -1);
 
                 var role = await FindByIDAsync<Role>(roleID);
 
