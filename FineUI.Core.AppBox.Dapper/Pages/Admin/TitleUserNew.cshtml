@@ -15,8 +15,8 @@
                     <f:ToolbarSeparator></f:ToolbarSeparator>
                     <f:Button ID="btnSaveClose" Icon="SystemSaveClose" Text="选择后关闭" OnClick="btnSaveClose_Click"></f:Button>
                     <f:ToolbarFill></f:ToolbarFill>
-                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
-                                      OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
+                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
+                        ShowTrigger1="false" OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
                     </f:TwinTriggerBox>
                 </Items>
             </f:Toolbar>
@@ -27,11 +27,10 @@
                     <f:Label ID="labSelectedUsers" EncodeText="false" CssStyle="margin:0;"></f:Label>
                 </Items>
             </f:Panel>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="true"
-                    DataIDField="ID" DataTextField="Name"
-                    AllowSorting="true" SortField="Name" SortDirection="DESC" OnSort="Grid1_Sort"
-                    AllowPaging="true" IsDatabasePaging="true" OnPageIndexChanged="Grid1_PageIndexChanged"
-                    ClearSelectionBeforePaging="false" ClearSelectionBeforeBinding="false" KeepCurrentSelection="true" KeepPagedSelection="true">
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="true" DataIDField="ID"
+                DataTextField="Name" AllowSorting="true" SortField="Name" SortDirection="DESC" OnSort="Grid1_Sort" AllowPaging="true" IsDatabasePaging="true"
+                OnPageIndexChanged="Grid1_PageIndexChanged" ClearSelectionBeforePaging="false" ClearSelectionBeforeBinding="false" KeepCurrentSelection="true"
+                KeepPagedSelection="true">
                 <Columns>
                     <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
                     <f:RenderField For="Users.First().Name" QuickSortField="true" Width="100"></f:RenderField>
@@ -113,4 +112,3 @@
     </script>
 
 }
-

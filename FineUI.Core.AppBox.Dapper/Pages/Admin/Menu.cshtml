@@ -8,10 +8,8 @@
 
     <f:Panel ID="Panel1" ShowBorder="false" Layout="Fit" ShowHeader="false" IsViewPort="true" Margin="20">
         <Items>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="false"
-                    DataIDField="ID" DataTextField="Name"
-                    EnableTree="true" TreeColumn="Name" DataParentIDField="ParentID" ExpandAllTreeNodes="true"
-                    OnRowCommand="Grid1_RowCommand">
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="ID"
+                DataTextField="Name" EnableTree="true" TreeColumn="Name" DataParentIDField="ParentID" ExpandAllTreeNodes="true" OnRowCommand="Grid1_RowCommand">
                 <Columns>
                     <f:RowNumberField EnableTreeNumber="true"></f:RowNumberField>
                     <f:RenderField For="Menus.First().Name" Width="200"></f:RenderField>
@@ -22,9 +20,8 @@
                     <f:RenderField For="Menus.First().SortIndex" Width="80"></f:RenderField>
                     <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="100">
                         <Commands>
-                            <f:Command CommandName="Edit" Icon="Pencil" ToolTip="编辑"
-                                       WindowID="Window1" WindowTitle="编辑"
-                                       WindowIFrameUrlFormatString="@Url.Content("~/Admin/MenuEdit?id={0}")" _WindowIFrameUrlFields="ID" />
+                            <f:Command CommandName="Edit" Icon="Pencil" ToolTip="编辑" WindowID="Window1" WindowTitle="编辑"
+                                WindowIFrameUrlFormatString="@Url.Content("~/Admin/MenuEdit?id={0}")" _WindowIFrameUrlFields="ID" />
                             <f:Command CommandName="Delete" Icon="Delete" ToolTip="删除" CssClass="mybtn3" ConfirmText="确定删除此记录？" ConfirmTarget="Top" />
                         </Commands>
                     </f:RenderField>
@@ -43,8 +40,8 @@
     </f:Panel>
 
 
-    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
-              EnableMaximize="true" EnableIFrame="true" Width="900" Height="650" OnClose="Window1_Close">
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="650"
+        OnClose="Window1_Close">
     </f:Window>
 
 }
@@ -66,4 +63,3 @@
 
     </script>
 }
-

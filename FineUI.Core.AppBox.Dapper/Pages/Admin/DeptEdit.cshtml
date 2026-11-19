@@ -13,7 +13,8 @@
                     <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" ClickHandler="onCloseActiveWindowClick">
                     </f:Button>
                     <f:ToolbarSeparator></f:ToolbarSeparator>
-                    <f:Button ID="btnSaveClose" _ValidateForms="SimpleForm1" Icon="SystemSaveClose" OnClick="btnSaveClose_Click" OnClickFields="SimpleForm1" Text="保存后关闭"></f:Button>
+                    <f:Button ID="btnSaveClose" _ValidateForms="SimpleForm1" Icon="SystemSaveClose" OnClick="btnSaveClose_Click" OnClickFields="SimpleForm1"
+                        Text="保存后关闭"></f:Button>
                 </Items>
             </f:Toolbar>
         </Toolbars>
@@ -24,11 +25,9 @@
                     <f:TextBox For="Dept.SortIndex"></f:TextBox>
                     <f:DropDownBox ID="ddbParent" Label="上级部门" AutoShowClearIcon="true">
                         <PopPanel>
-                            <f:Grid ID="Grid1" ShowBorder="true" ShowHeader="false" Hidden="true" Width="550" ShowGridHeader="false"
-                                    EnableTree="true" TreeColumn="Name" DataIDField="ID" DataParentIDField="ParentID" DataTextField="Name"
-                                    ExpandAllTreeNodes="true" DisableUnselectableRows="true"
-                                    EnableRowLines="false" EnableAlternateRowColor="false" 
-                                    OnRowDataBound="Grid1_RowDataBound">
+                            <f:Grid ID="Grid1" ShowBorder="true" ShowHeader="false" Hidden="true" Width="550" ShowGridHeader="false" EnableTree="true"
+                                TreeColumn="Name" DataIDField="ID" DataParentIDField="ParentID" DataTextField="Name" ExpandAllTreeNodes="true"
+                                DisableUnselectableRows="true" EnableRowLines="false" EnableAlternateRowColor="false" OnRowDataBound="Grid1_RowDataBound">
                                 <Columns>
                                     <f:RenderField ColumnID="Name" DataField="Name" HeaderText="部门名称" ExpandUnusedSpace="true" />
                                 </Columns>
@@ -42,7 +41,3 @@
     </f:Panel>
 
 }
-
-
-
-

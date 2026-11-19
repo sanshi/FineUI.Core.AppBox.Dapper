@@ -13,27 +13,29 @@
                     <f:FormRow>
                         <Items>
                             <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                              ShowTrigger1="false" ShowTrigger1="false" OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
+                                ShowTrigger1="false" ShowTrigger1="false" OnTrigger1Click="ttbSearchMessage_Trigger1Click"
+                                OnTrigger2Click="ttbSearchMessage_Trigger2Click">
                             </f:TwinTriggerBox>
                             <f:Label></f:Label>
                         </Items>
                     </f:FormRow>
                 </Rows>
             </f:Form>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="UserID" DataTextField="Name" AllowSorting="true"
-                    SortField="UpdateTime" SortDirection="DESC" AllowPaging="true" IsDatabasePaging="true"
-                    OnSort="Grid1_Sort" OnPageIndexChanged="Grid1_PageIndexChanged">
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="UserID"
+                DataTextField="Name" AllowSorting="true" SortField="UpdateTime" SortDirection="DESC" AllowPaging="true" IsDatabasePaging="true"
+                OnSort="Grid1_Sort" OnPageIndexChanged="Grid1_PageIndexChanged">
                 <Columns>
                     <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
-                    <f:RenderField For="Onlines.First().UpdateTime" QuickSortField="true" FieldType="Date" Renderer="Date" RendererArgument="yyyy-MM-dd HH:mm" Width="150"></f:RenderField>
-                    <f:RenderField For="Onlines.First().LoginTime" QuickSortField="true" FieldType="Date" Renderer="Date" RendererArgument="yyyy-MM-dd HH:mm" Width="150"></f:RenderField>
+                    <f:RenderField For="Onlines.First().UpdateTime" QuickSortField="true" FieldType="Date" Renderer="Date" RendererArgument="yyyy-MM-dd HH:mm"
+                        Width="150"></f:RenderField>
+                    <f:RenderField For="Onlines.First().LoginTime" QuickSortField="true" FieldType="Date" Renderer="Date" RendererArgument="yyyy-MM-dd HH:mm"
+                        Width="150"></f:RenderField>
                     <f:RenderField For="Onlines.First().UserName" QuickSortField="true" Width="100"></f:RenderField>
                     <f:RenderField For="Onlines.First().UserChineseName" QuickSortField="true" Width="100"></f:RenderField>
                     <f:RenderField For="Onlines.First().IPAdddress" ExpandUnusedSpace="true"></f:RenderField>
                     <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="100">
                         <Commands>
-                            <f:Command CommandName="Edit" Icon="Pencil" ToolTip="查看" 
-                                WindowID="Window1" WindowTitle="查看用户信息" 
+                            <f:Command CommandName="Edit" Icon="Pencil" ToolTip="查看" WindowID="Window1" WindowTitle="查看用户信息"
                                 WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserView?id={0}")" _WindowIFrameUrlFields="ID" />
                         </Commands>
                     </f:RenderField>
@@ -53,8 +55,8 @@
         </Items>
     </f:Panel>
 
-    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
-              EnableMaximize="true" EnableIFrame="true" Width="900" Height="650" OnClose="Window1_Close">
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="650"
+        OnClose="Window1_Close">
     </f:Window>
 
 }
@@ -63,4 +65,3 @@
 
 
 }
-

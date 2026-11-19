@@ -39,10 +39,12 @@
 
     <f:RegionPanel ID="RegionPanel1" ShowBorder="false" IsViewPort="true" Margin="20">
         <Regions>
-            <f:Region ID="Region1" ShowBorder="false" ShowHeader="false" Width="260" RegionPosition="Left" RegionSplit="true" RegionSplitIcon="false" RegionSplitWidth="10" Layout="Fit">
+            <f:Region ID="Region1" ShowBorder="false" ShowHeader="false" Width="260" RegionPosition="Left" RegionSplit="true" RegionSplitIcon="false"
+                RegionSplitWidth="10" Layout="Fit">
                 <Items>
-                    <f:Grid ID="Grid1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="ID" DataTextField="Name" AllowSorting="true" EnableMultiSelect="false"
-                            SortField="Name" SortDirection="DESC" OnSort="Grid1_Sort" OnRowClick="Grid1_RowClick">
+                    <f:Grid ID="Grid1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="ID"
+                        DataTextField="Name" AllowSorting="true" EnableMultiSelect="false" SortField="Name" SortDirection="DESC" OnSort="Grid1_Sort"
+                        OnRowClick="Grid1_RowClick">
                         <Columns>
                             <f:RowNumberField></f:RowNumberField>
                             <f:RenderField For="Roles.First().Name" QuickSortField="true" ExpandUnusedSpace="true"></f:RenderField>
@@ -52,8 +54,8 @@
             </f:Region>
             <f:Region ID="Region2" ShowBorder="false" ShowHeader="false" RegionPosition="Center" Layout="Fit">
                 <Items>
-                    <f:Grid ID="Grid2" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" AllowSorting="true"
-                            SortField="GroupName" SortDirection="DESC" OnSort="Grid2_Sort">
+                    <f:Grid ID="Grid2" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" AllowSorting="true" SortField="GroupName"
+                        SortDirection="DESC" OnSort="Grid2_Sort">
                         <Listeners>
                             <f:Listener Event="beforerowcontextmenu" Handler="onGrid2Contextmenu"></f:Listener>
                         </Listeners>
@@ -188,4 +190,3 @@
 
     </script>
 }
-

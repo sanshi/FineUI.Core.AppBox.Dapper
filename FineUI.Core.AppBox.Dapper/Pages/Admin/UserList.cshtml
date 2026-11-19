@@ -13,7 +13,7 @@
                     <f:FormRow ID="FormRow1">
                         <Items>
                             <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                              ShowTrigger1="false" OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
+                                ShowTrigger1="false" OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
                             </f:TwinTriggerBox>
                             <f:RadioButtonList ID="rblEnableStatus" OnSelectedIndexChanged="rblEnableStatus_SelectedIndexChanged" Label="启用状态" ColumnNumber="3">
                                 <Items>
@@ -26,11 +26,9 @@
                     </f:FormRow>
                 </Rows>
             </f:Form>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="true"
-                    DataIDField="ID" DataTextField="Name"
-                    AllowSorting="true" SortField="Name" SortDirection="DESC" OnSort="Grid1_Sort"
-                    AllowPaging="true" IsDatabasePaging="true" OnPageIndexChanged="Grid1_PageIndexChanged"
-                    OnRowCommand="Grid1_RowCommand">
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="true" DataIDField="ID"
+                DataTextField="Name" AllowSorting="true" SortField="Name" SortDirection="DESC" OnSort="Grid1_Sort" AllowPaging="true" IsDatabasePaging="true"
+                OnPageIndexChanged="Grid1_PageIndexChanged" OnRowCommand="Grid1_RowCommand">
                 <Columns>
                     <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
                     <f:RenderField For="Users.First().Name" QuickSortField="true" Width="100"></f:RenderField>
@@ -41,15 +39,12 @@
                     <f:RenderField For="Users.First().Remark" ExpandUnusedSpace="true" />
                     <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="150">
                         <Commands>
-                            <f:Command CommandName="View" Icon="Information" ToolTip="查看用户信息"
-                                       WindowID="Window1" WindowTitle="查看用户信息"
-                                       WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserView?id={0}")" _WindowIFrameUrlFields="ID" />
-                            <f:Command CommandName="ChangePassword" Icon="Key" ToolTip="修改密码"
-                                       WindowID="Window1" WindowTitle="修改密码"
-                                       WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserChangePassword?id={0}")" _WindowIFrameUrlFields="ID" />
-                            <f:Command CommandName="Edit" Icon="Pencil" ToolTip="编辑"
-                                       WindowID="Window1" WindowTitle="编辑"
-                                       WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserEdit?id={0}")" _WindowIFrameUrlFields="ID" />
+                            <f:Command CommandName="View" Icon="Information" ToolTip="查看用户信息" WindowID="Window1" WindowTitle="查看用户信息"
+                                WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserView?id={0}")" _WindowIFrameUrlFields="ID" />
+                            <f:Command CommandName="ChangePassword" Icon="Key" ToolTip="修改密码" WindowID="Window1" WindowTitle="修改密码"
+                                WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserChangePassword?id={0}")" _WindowIFrameUrlFields="ID" />
+                            <f:Command CommandName="Edit" Icon="Pencil" ToolTip="编辑" WindowID="Window1" WindowTitle="编辑"
+                                WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserEdit?id={0}")" _WindowIFrameUrlFields="ID" />
                             <f:Command CommandName="Delete" Icon="Delete" ToolTip="删除" CssClass="mybtn3" ConfirmText="确定删除此记录？" ConfirmTarget="Top" />
                         </Commands>
                     </f:RenderField>
@@ -88,8 +83,8 @@
         </Items>
     </f:Panel>
 
-    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
-              EnableMaximize="true" EnableIFrame="true" Width="900" Height="650" OnClose="Window1_Close">
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="650"
+        OnClose="Window1_Close">
     </f:Window>
 }
 

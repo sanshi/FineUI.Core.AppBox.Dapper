@@ -9,12 +9,12 @@
 
     <f:RegionPanel ID="RegionPanel1" ShowBorder="false" IsViewPort="true" Margin="20">
         <Regions>
-            <f:Region ID="Region1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" Width="260" RegionPosition="Left" RegionSplit="true" RegionSplitIcon="false" RegionSplitWidth="10" Layout="Fit">
+            <f:Region ID="Region1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" Width="260" RegionPosition="Left" RegionSplit="true"
+                RegionSplitIcon="false" RegionSplitWidth="10" Layout="Fit">
                 <Items>
-                    <f:Grid ID="Grid1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="false"
-                            DataIDField="ID" DataTextField="Name"
-                            EnableMultiSelect="false" OnRowClick="Grid1_RowClick"
-                            EnableTree="true" TreeColumn="Name" DataParentIDField="ParentID" ExpandAllTreeNodes="true">
+                    <f:Grid ID="Grid1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="ID" DataTextField="Name"
+                        EnableMultiSelect="false" OnRowClick="Grid1_RowClick" EnableTree="true" TreeColumn="Name" DataParentIDField="ParentID"
+                        ExpandAllTreeNodes="true">
                         <Columns>
                             <f:RowNumberField EnableTreeNumber="true"></f:RowNumberField>
                             <f:RenderField For="Depts.First().Name" SortField="Name" ExpandUnusedSpace="true"></f:RenderField>
@@ -28,19 +28,17 @@
                         <Rows>
                             <f:FormRow>
                                 <Items>
-                                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
-                                                      OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
+                                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
+                                        ShowTrigger1="false" OnTrigger1Click="ttbSearchMessage_Trigger1Click" OnTrigger2Click="ttbSearchMessage_Trigger2Click">
                                     </f:TwinTriggerBox>
                                     <f:Label></f:Label>
                                 </Items>
                             </f:FormRow>
                         </Rows>
                     </f:Form>
-                    <f:Grid ID="Grid2" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="true"
-                            DataIDField="ID" DataTextField="Name"
-                            AllowSorting="true" SortField="Name" SortDirection="DESC" OnSort="Grid2_Sort"
-                            AllowPaging="true" IsDatabasePaging="true" OnPageIndexChanged="Grid2_PageIndexChanged"
-                            OnRowCommand="Grid2_RowCommand">
+                    <f:Grid ID="Grid2" BoxFlex="1" ShowBorder="true" ShowBorderShadow="true" ShowHeader="false" EnableCheckBoxSelect="true" DataIDField="ID"
+                        DataTextField="Name" AllowSorting="true" SortField="Name" SortDirection="DESC" OnSort="Grid2_Sort" AllowPaging="true"
+                        IsDatabasePaging="true" OnPageIndexChanged="Grid2_PageIndexChanged" OnRowCommand="Grid2_RowCommand">
                         <Toolbars>
                             <f:Toolbar ID="Toolbar1">
                                 <Items>
@@ -73,9 +71,8 @@
                             <f:RenderField For="Users.First().Remark" ExpandUnusedSpace="true" />
                             <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="100">
                                 <Commands>
-                                    <f:Command CommandName="View" Icon="Information" ToolTip="查看用户信息"
-                                               WindowID="Window1" WindowTitle="查看用户信息"
-                                               WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserView?id={0}")" _WindowIFrameUrlFields="ID" />
+                                    <f:Command CommandName="View" Icon="Information" ToolTip="查看用户信息" WindowID="Window1" WindowTitle="查看用户信息"
+                                        WindowIFrameUrlFormatString="@Url.Content("~/Admin/UserView?id={0}")" _WindowIFrameUrlFields="ID" />
                                     <f:Command CommandName="Delete" Icon="Delete" ToolTip="删除" CssClass="mybtn3" ConfirmText="确定删除此记录？" ConfirmTarget="Top" />
                                 </Commands>
                             </f:RenderField>
@@ -86,8 +83,8 @@
         </Regions>
     </f:RegionPanel>
 
-    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true"
-              Width="900" Height="650" OnClose="Window1_Close">
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="650"
+        OnClose="Window1_Close">
     </f:Window>
 
 }
@@ -129,4 +126,3 @@
 
     </script>
 }
-
